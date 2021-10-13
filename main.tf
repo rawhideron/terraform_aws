@@ -9,7 +9,11 @@
 		instance_type = "t2.micro"
 		tags = {
 			Name = "terraform-example"
-# testing the upload to git
+		user_data = <<-EOF
+			#!/bin/bash
+			echo "Hello, World" > index.html
+			nohup busybox httpd -f -p 8080 &
+			EOF
 		}
 	}
 
