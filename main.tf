@@ -9,6 +9,7 @@
 		instance_type = "t2.micro"
 		tags = {
 			Name = "terraform-example"
+# testing the upload to git
 		}
 	}
 
