@@ -24,9 +24,11 @@
 		security_groups = [aws_security_group.instance.id]
 		
 		user_data = <<-EOF
-			#!/bin/bash
+			#!/usr/bin/bash
+			sudo yum install -y httpd &&
+			sudo systemctl start httpd &&
+			sudo systemctl enable httpd &&
 			echo "Hello, World" > index.html
-			nohup busybox httpd -f -p server_port &
 			EOF
 		lifecycle {
 			create_before_destroy = true
@@ -133,10 +135,16 @@
 			protocol = "tcp"
 			cidr_blocks = ["0.0.0.0/0"]
 		}
+		ingress {
+			from_port = 22
+			to_port = 22
+			protocol = "tcp"
+			cidr_blocks = ["0.0.0.0/0"]
+		}
 
 		egress {
-			from_port = var.server_port
-			to_port = var.server_port
+			from_port = 0
+			to_port = 0
 			protocol = "-1"
 			cidr_blocks = ["0.0.0.0/0"]
 		}
