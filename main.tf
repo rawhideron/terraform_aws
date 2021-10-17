@@ -6,7 +6,7 @@
 	variable "server_port" {
 		description = "No comment"
 		type = number
-		default = 8080
+		default = 80
 
 	}
 	data "aws_vpc" "default" {
