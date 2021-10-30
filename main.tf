@@ -156,4 +156,3 @@
 		value = aws_lb.example2.dns_name
 		description = "The domain of the load balancer"
 	}
-# testing
