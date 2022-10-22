@@ -7,16 +7,20 @@ variable "server_port" {
   description = "No comment"
   type        = number
   default     = 80
-
 }
+
+
 data "aws_vpc" "default" {
   default = true
 }
 
-data "aws_subnets" "default" {
+
+data "aws_subnet_ids" "default" {
   vpc_id = data.aws_vpc.default.id
 
 }
+
+
 
 resource "aws_launch_configuration" "example2" {
   image_id        = "ami-02e136e904f3da870"
